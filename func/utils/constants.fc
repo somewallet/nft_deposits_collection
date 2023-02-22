@@ -1,0 +1,6 @@
+#pragma version >=0.4.0;
+#include "../../lib/func/utils.fc";
+
+const int UNIX_180_DAYS = 180 * 24 * 60 * 60;
+const int AMOUNT_FOR_NFT_DEPLOY = 50000000;
+const int MIN_MSG_AMOUNT = 20000000;

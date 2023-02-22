@@ -1,0 +1,16 @@
+"TonUtil.fif" include
+
+"EQBRUHhkVHmIEC7HqmJvXDv7j9noMMLGlECI6AK2FH7MIQbP" constant nft_owner_address
+
+."Deploying with nft owner address:" nft_owner_address type cr
+nft_owner_address $>smca 0= abort"Specify valid owner address"
+drop // Dropping address flags
+
+<b
+  0xb30c7310 32 u, // op::claim_reward
+  0 64 u, // query_id
+  -rot Addr, // reward_addr
+b>
+
+
+

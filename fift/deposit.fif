@@ -1,0 +1,22 @@
+"TonUtil.fif" include
+
+50000000 =: storage_grams
+
+// "EQDlT07NpSh0uj-aSBkF2TRxOqR2nw0ErOQsA6TYakr1-FxP"
+"kQBRUHhkVHmIEC7HqmJvXDv7j9noMMLGlECI6AK2FH7MIb1F" constant nft_owner_address
+
+."Deploying with nft owner address:" nft_owner_address type cr
+nft_owner_address $>smca 0= abort"Specify valid owner address"
+drop // Dropping address flags
+
+<b
+  -rot Addr, // nft owner address
+  <b "0/0.json" $, b> ref, // nft content
+b> constant nft_payload
+
+<b
+  0xf9471134 32 u, // op::deposit
+  0 64 u, // query_id
+  // Initialization message body consists of owner_address and ref to the nft_content cell
+  nft_payload ref, // Storing content ref
+b>

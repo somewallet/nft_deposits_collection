@@ -185,14 +185,6 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
       staking_contracts_dict
     ) = load_data();
 
-    if (op == op::get_royalty_params) {
-
-        send_royalty_params(sender_address, query_id, royalty_params.begin_parse());
-
-        return ();
-        
-    }
-
     if (op == op::deposit) {
 
       throw_if(777, msg_value < min_deposit_amount);
@@ -250,6 +242,14 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
 
       return ();
 
+    }
+
+    if (op == op::get_royalty_params) {
+
+        send_royalty_params(sender_address, query_id, royalty_params.begin_parse());
+
+        return ();
+        
     }
 
     throw_unless(401, equal_slices(sender_address, owner_address));
@@ -380,6 +380,34 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
 
 ;; Get methods
 
+(int, int) get_deposit_data_by_nft_index (int index) method_id {
+
+  var (_, _, _, nft_item_code, _, _, _, _, _, staking_contracts_dict) = load_data();
+
+  cell state_init = calculate_nft_item_state_init(index, nft_item_code);
+  slice nft_address = calculate_nft_item_address(workchain, state_init);
+
+  (_, slice value, _, int f) = pfxdict_get?(staking_contracts_dict, nft_address.slice_bits(), nft_address);
+
+  int reward_unix_time = value~load_uint(32);
+  int reward_amount = value~load_uint(256);
+
+  return (reward_unix_time, reward_amount);
+
+}
+
+(cell) get_staking_contracts_dict () method_id {
+
+  var (_, _, _, _, _, _, _, _, _, staking_contracts_dict) = load_data();
+
+  return staking_contracts_dict;
+
+}
+
+(slice, int, cell, cell, cell, int, int, int, int, cell) get_everything () method_id {
+  return load_data();
+}
+
 (int, cell, slice) get_collection_data() method_id {
   var (owner_address, next_item_index, content, _, _, _, _, _, _, _) = load_data();
   slice cs = content.begin_parse();
@@ -408,33 +436,5 @@ cell get_nft_content(int index, cell individual_nft_content) method_id {
                       .store_slice(common_content)
                       .store_ref(individual_nft_content)
           .end_cell());
-}
-
-(int, int) get_deposit_data_by_nft_index (int index) method_id {
-
-  var (_, _, _, nft_item_code, _, _, _, _, _, staking_contracts_dict) = load_data();
-
-  cell state_init = calculate_nft_item_state_init(index, nft_item_code);
-  slice nft_address = calculate_nft_item_address(workchain, state_init);
-
-  (_, slice value, _, int f) = pfxdict_get?(staking_contracts_dict, nft_address.slice_bits(), nft_address);
-
-  int reward_unix_time = value~load_uint(32);
-  int reward_amount = value~load_uint(256);
-
-  return (reward_unix_time, reward_amount);
-
-}
-
-(cell) get_staking_contracts_dict () method_id {
-
-  var (_, _, _, _, _, _, _, _, _, staking_contracts_dict) = load_data();
-
-  return staking_contracts_dict;
-
-}
-
-(slice, int, cell, cell, cell, int, int, int, int, cell) get_everything () method_id {
-  return load_data();
 }
 

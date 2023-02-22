@@ -69,9 +69,20 @@ constants.fc
 `toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_everything`
 
 #### Get collection data
+
+`toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_collection_data`
+
 #### Get NFT address by index
+
+`toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_nft_address_by_index`
+
 #### Get royalty params
+
+`toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT royalty_params`
+
 #### Get nft content
+
+`toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_nft_content`
 
 ### Private Key Methods
 

@@ -2,13 +2,6 @@
 
 NFT Deposits Collection - is an extension of [NFT Standard](https://github.com/ton-blockchain/TIPs/issues/62) that implements all the operations and get-methods of the original standard but adds some functionality that allow users to get an NFT on deposit of funds and get a reward for staking the deposit on change of the NFT after 180 days.
 
-Prerequisites:
-
-- lite-client
-- FunC
-- FIFT
-- toncli
-
 Smart-contracts
 
 nft-collection.fc

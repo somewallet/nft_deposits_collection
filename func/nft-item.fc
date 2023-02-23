@@ -2,6 +2,8 @@
 ;;  TON NFT Stakable Item Smart Contract
 ;;
 
+;; toncli get get_nft_data -a EQA02e57_Z6sJhty5PQN4rUKpcnxTd7rTo7e2v0cPyfsm4sr --fift ./fift/parse-data-nft-single.fif
+
 {-
 
     NOTE that this tokens can be transferred within the same workchain.

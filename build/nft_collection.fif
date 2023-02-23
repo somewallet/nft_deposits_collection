@@ -27,13 +27,13 @@ PROGRAM{
   DECLPROC send_royalty_params
   DECLPROC recv_internal
   DECLPROC recv_external
+  84967 DECLMETHOD get_deposit_data_by_nft_index
+  88272 DECLMETHOD get_staking_contracts_dict
+  118654 DECLMETHOD get_everything
   102491 DECLMETHOD get_collection_data
   92067 DECLMETHOD get_nft_address_by_index
   85719 DECLMETHOD royalty_params
   68445 DECLMETHOD get_nft_content
-  84967 DECLMETHOD get_deposit_data_by_nft_index
-  88272 DECLMETHOD get_staking_contracts_dict
-  118654 DECLMETHOD get_everything
   power PROCREF:<{
     //  x exponent
     OVER	//  x exponent x
@@ -498,61 +498,49 @@ PROGRAM{
     64 LDU	//  my_balance msg_value sender_address op query_id in_msg_body
     load_data INLINECALLDICT	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
     s12 PUSH
-    1765620048 PUSHINT	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict op _35=1765620048
+    4182184244 PUSHINT	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict op _35=4182184244
     EQUAL	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict _36
     IFJMP:<{	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
-      s5 s10 XCHG
-      10 BLKDROP
-      s2 POP
-      s3 POP
-      s3 POP	//  royalty_params query_id sender_address
-      s0 s2 XCHG	//  sender_address query_id royalty_params
-      CTOS	//  sender_address query_id _37
-      send_royalty_params INLINECALLDICT
-    }>	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
-    s11 POP	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
-    s11 PUSH
-    4182184244 PUSHINT	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield op _39=4182184244
-    EQUAL	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield _40
-    IFJMP:<{	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
+      s11 POP
       s11 POP
       s13 POP	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key
       s11 s12 PUSH2	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key msg_value min_deposit_amount
-      LESS	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _42
+      LESS	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _38
       777 THROWIF
-      50000000 PUSHINT	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _45=50000000
-      s0 s8 XCHG	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _45=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key in_msg_body
-      LDREF	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _45=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _178 _177
-      DROP	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _45=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _46
+      50000000 PUSHINT	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _41=50000000
+      s0 s8 XCHG	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _41=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key in_msg_body
+      LDREF	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _41=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _178 _177
+      DROP	//  min_deposit_amount msg_value sender_address semi_annual_yield staking_contracts_dict _41=50000000 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key _42
       s6 PUSH
       s5 s0 XCPU
       s0 s5 XCHG
       s4 s10 XCHG
       s2 s3 XCHG
       s11 s13 s14 XCHG3
-      s12 PUSH	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address next_item_index content next_item_index nft_item_code _45=50000000 _46 staking_contracts_dict sender_address msg_value semi_annual_yield
+      s12 PUSH	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address next_item_index content next_item_index nft_item_code _41=50000000 _42 staking_contracts_dict sender_address msg_value semi_annual_yield
       deploy_nft_item CALLDICT	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address next_item_index content new_staking_contracts_dict
       s0 s2 XCHG	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address new_staking_contracts_dict content next_item_index
-      INC	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address new_staking_contracts_dict content _50
+      INC	//  min_deposit_amount royalty_params nft_item_code semi_annual_yield public_key stored_seqno owner_address new_staking_contracts_dict content _46
       s3 s9 XCHG
       s0 s8 XCHG
       s0 s5 XCHG
       s3 s7 s3 XCHG3
-      s1 s6 XCHG	//  owner_address _50 content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
+      s1 s6 XCHG	//  owner_address _46 content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
       save_data INLINECALLDICT
-    }>	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
-    s11 PUSH
-    3003937552 PUSHINT	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield op _52=3003937552
-    EQUAL	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield _53
-    IFJMP:<{	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
+    }>	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
+    s12 PUSH
+    3003937552 PUSHINT	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict op _48=3003937552
+    EQUAL	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict _49
+    IFJMP:<{	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
+      s11 POP
       s11 POP
       s12 POP	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key
       s0 s7 XCHG	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno in_msg_body
       LDMSGADDR	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno _180 _179
       DROP	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr
       s10 PUSH	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr sender_address
-      SBITS	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _61
-      s11 s9 s(-2) PU2XC	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr sender_address staking_contracts_dict _61
+      SBITS	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _57
+      s11 s9 s(-2) PU2XC	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr sender_address staking_contracts_dict _57
       PFXDICTGETQ
       NULLSWAPIFNOT2	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _181 _182 _183 _184
       NIP
@@ -562,19 +550,19 @@ PROGRAM{
       DROP	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr f reward_unix_time reward_amount
       s0 s2 XCHG	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount reward_unix_time f
       444 THROWIFNOT
-      NOW	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount reward_unix_time _74
-      LEQ	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount _75
+      NOW	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount reward_unix_time _70
+      LEQ	//  my_balance min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount _71
       555 THROWIFNOT
       s0 s13 PUXC	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr reward_amount my_balance
-      LEQ	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _78
+      LEQ	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _74
       666 THROWIFNOT
       s10 PUSH	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr sender_address
-      SBITS	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _82
-      s11 s9 s0 XCHG3	//  reward_amount min_deposit_amount stored_seqno semi_annual_yield reward_addr public_key owner_address next_item_index content nft_item_code royalty_params sender_address staking_contracts_dict _82
+      SBITS	//  reward_amount min_deposit_amount sender_address semi_annual_yield staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno reward_addr _78
+      s11 s9 s0 XCHG3	//  reward_amount min_deposit_amount stored_seqno semi_annual_yield reward_addr public_key owner_address next_item_index content nft_item_code royalty_params sender_address staking_contracts_dict _78
       PFXDICTDEL	//  reward_amount min_deposit_amount stored_seqno semi_annual_yield reward_addr public_key owner_address next_item_index content nft_item_code royalty_params new_staking_contracts_dict flag
       IF:<{	//  reward_amount min_deposit_amount stored_seqno semi_annual_yield reward_addr public_key owner_address next_item_index content nft_item_code royalty_params new_staking_contracts_dict
         s11 s7 XCHG2
-        0 PUSHINT	//  royalty_params min_deposit_amount stored_seqno semi_annual_yield new_staking_contracts_dict public_key owner_address next_item_index content nft_item_code reward_amount reward_addr _84=0
+        0 PUSHINT	//  royalty_params min_deposit_amount stored_seqno semi_annual_yield new_staking_contracts_dict public_key owner_address next_item_index content nft_item_code reward_amount reward_addr _80=0
         messages::send_empty INLINECALLDICT
       }>ELSE<{
         s7 POP
@@ -586,142 +574,159 @@ PROGRAM{
       s0 s4 XCHG2
       s0 s3 XCHG	//  owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
       save_data INLINECALLDICT
-    }>	//  my_balance msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
-    s14 POP	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount
-    s11 s7 PUSH2	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount sender_address owner_address
-    SDEQ	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount _88
+    }>	//  my_balance msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
+    s15 POP	//  staking_contracts_dict msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
+    s11 PUSH
+    1765620048 PUSHINT	//  staking_contracts_dict msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield op _83=1765620048
+    EQUAL	//  staking_contracts_dict msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield _84
+    IFJMP:<{	//  staking_contracts_dict msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
+      s4 s9 XCHG
+      9 BLKDROP
+      s2 POP
+      s3 POP
+      s3 POP	//  royalty_params query_id sender_address
+      s0 s2 XCHG	//  sender_address query_id royalty_params
+      CTOS	//  sender_address query_id _85
+      send_royalty_params INLINECALLDICT
+    }>	//  staking_contracts_dict msg_value sender_address op query_id in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield
+    s10 POP	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount
+    s11 s7 PUSH2	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount sender_address owner_address
+    SDEQ	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount _88
     401 THROWIFNOT
-    NEWDICT	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
-    s11 PUSH	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict op
-    1 EQINT	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict _93
-    IFJMP:<{	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
+    NEWDICT	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
+    s11 PUSH	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict op
+    1 EQINT	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict _93
+    IFJMP:<{	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
       DROP
-      s10 POP	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key
-      s0 s7 XCHG	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno in_msg_body
-      64 LDU	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body
-      s1 s6 PUSH2	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body item_index next_item_index
-      LEQ	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body _99
+      s10 POP	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key
+      s0 s7 XCHG	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno in_msg_body
+      64 LDU	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body
+      s1 s6 PUSH2	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body item_index next_item_index
+      LEQ	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body _99
       402 THROWIFNOT
-      s1 s6 PUSH2	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body item_index next_item_index
-      EQUAL	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body is_last
-      SWAP	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last in_msg_body
-      LDVARUINT16	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 in_msg_body
-      LDREF	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 _196 _195
-      DROP	//  semi_annual_yield msg_value sender_address min_deposit_amount staking_contracts_dict public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 _105
+      s1 s6 PUSH2	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body item_index next_item_index
+      EQUAL	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index in_msg_body is_last
+      SWAP	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last in_msg_body
+      LDVARUINT16	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 in_msg_body
+      LDREF	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 _196 _195
+      DROP	//  staking_contracts_dict msg_value sender_address min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code royalty_params stored_seqno item_index is_last _103 _105
       s6 PUSH
       s4 s6 XCHG
       s4 s3 s5 XCHG3
-      s12 s14 s15 XCHG3
-      16 s() PUSH	//  semi_annual_yield stored_seqno is_last min_deposit_amount royalty_params public_key owner_address next_item_index content nft_item_code item_index nft_item_code _103 _105 staking_contracts_dict sender_address msg_value semi_annual_yield
-      deploy_nft_item CALLDICT	//  semi_annual_yield stored_seqno is_last min_deposit_amount royalty_params public_key owner_address next_item_index content nft_item_code new_staking_contracts_dict
-      s0 s8 XCHG	//  semi_annual_yield stored_seqno new_staking_contracts_dict min_deposit_amount royalty_params public_key owner_address next_item_index content nft_item_code is_last
-      IF:<{	//  semi_annual_yield stored_seqno new_staking_contracts_dict min_deposit_amount royalty_params public_key owner_address next_item_index content nft_item_code
-        s0 s2 XCHG	//  semi_annual_yield stored_seqno new_staking_contracts_dict min_deposit_amount royalty_params public_key owner_address nft_item_code content next_item_index
-        INC	//  semi_annual_yield stored_seqno new_staking_contracts_dict min_deposit_amount royalty_params public_key owner_address nft_item_code content next_item_index
+      s2 16 s() XCHG
+      s14 s15 s12 XC2PU	//  royalty_params stored_seqno is_last min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code item_index nft_item_code _103 _105 staking_contracts_dict sender_address msg_value semi_annual_yield
+      deploy_nft_item CALLDICT	//  royalty_params stored_seqno is_last min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code new_staking_contracts_dict
+      s0 s8 XCHG	//  royalty_params stored_seqno new_staking_contracts_dict min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code is_last
+      IF:<{	//  royalty_params stored_seqno new_staking_contracts_dict min_deposit_amount semi_annual_yield public_key owner_address next_item_index content nft_item_code
+        s0 s2 XCHG	//  royalty_params stored_seqno new_staking_contracts_dict min_deposit_amount semi_annual_yield public_key owner_address nft_item_code content next_item_index
+        INC	//  royalty_params stored_seqno new_staking_contracts_dict min_deposit_amount semi_annual_yield public_key owner_address nft_item_code content next_item_index
         s3 s9 XCHG
-        s6 s7 s8 XCHG3
+        9 0 REVERSE
         s0 s4 XCHG
         s3 s3 XCHG2	//  owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
         save_data INLINECALLDICT
       }>ELSE<{
         10 BLKDROP	// 
       }>
-    }>	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
-    s11 PUSH	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict op
-    2 EQINT	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict _112
-    IFJMP:<{	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
-      s11 POP	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount
-      0 PUSHINT	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount counter=0
-      s0 s9 XCHG	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount in_msg_body
-      LDREF	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount _198 _197
-      DROP	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list
+    }>	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
+    s11 PUSH	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict op
+    2 EQINT	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict _112
+    IFJMP:<{	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
+      s11 POP	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount
+      0 PUSHINT	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount counter=0
+      s0 s9 XCHG	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount in_msg_body
+      LDREF	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount _198 _197
+      DROP	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter=0 owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list
       UNTIL:<{
-        64 PUSHINT	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list _122=64
+        64 PUSHINT	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list _122=64
         DICTUREMMIN
-        NULLSWAPIFNOT2	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f?
-        DUP	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f? f?
-        IF:<{	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f?
-          s14 POP	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index
-          s0 s11 XCHG	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
-          INC	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
+        NULLSWAPIFNOT2	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f?
+        DUP	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f? f?
+        IF:<{	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index f?
+          s14 POP	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item item_index
+          s0 s11 XCHG	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
+          INC	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
           DUP
-          250 PUSHINT	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter counter _126=250
-          GEQ	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _127
-          IF:<{	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
+          250 PUSHINT	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter counter _126=250
+          GEQ	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _127
+          IF:<{	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
             399 THROW
-          }>	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
-          403 PUSHINT	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _130=403
-          OVER	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _130=403 counter
-          ADD	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131
-          s12 s10 PUSH2	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131 item_index next_item_index
-          LEQ	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131 _132
+          }>	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter
+          403 PUSHINT	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _130=403
+          OVER	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _130=403 counter
+          ADD	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131
+          s12 s10 PUSH2	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131 item_index next_item_index
+          LEQ	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list item counter _131 _132
           THROWANYIFNOT
-          SWAP	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item
-          LDVARUINT16	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 item
-          LDREF	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 _209 _208
-          DROP	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 _136
+          SWAP	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item
+          LDVARUINT16	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 item
+          LDREF	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 _209 _208
+          DROP	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _134 _136
           s12 PUSH
           s9 s2 s(-1) PUXC2
-          s15 PUSH
+          19 s() PUSH
           18 s() PUSH
           20 s() PUSH
-          22 s() PUSH	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item_index nft_item_code _134 _136 staking_contracts_dict sender_address msg_value semi_annual_yield
-          deploy_nft_item CALLDICT	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter new_staking_contracts_dict
-          s11 s9 XCPU	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item_index next_item_index
-          EQUAL	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _139
-          IF:<{	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
-            s0 s8 XCHG	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address counter content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list next_item_index
-            INC	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address counter content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list next_item_index
-            s0 s8 XCHG	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
-          }>	//  semi_annual_yield msg_value sender_address f? staking_contracts_dict new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
+          18 s() PUSH	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item_index nft_item_code _134 _136 staking_contracts_dict sender_address msg_value semi_annual_yield
+          deploy_nft_item CALLDICT	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield item_index owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter new_staking_contracts_dict
+          s11 s9 XCPU	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter item_index next_item_index
+          EQUAL	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter _139
+          IF:<{	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
+            s0 s8 XCHG	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address counter content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list next_item_index
+            INC	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address counter content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list next_item_index
+            s0 s8 XCHG	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
+          }>	//  staking_contracts_dict msg_value sender_address f? semi_annual_yield new_staking_contracts_dict owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list counter
           s0 s10 XCHG
-          s0 s12 XCHG	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list f?
+          s0 s12 XCHG	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list f?
         }>ELSE<{
-          2 1 BLKDROP2	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list f?
+          2 1 BLKDROP2	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list f?
         }>
-        NOT	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list _142
-      }>	//  semi_annual_yield msg_value sender_address new_staking_contracts_dict staking_contracts_dict counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list
+        NOT	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list _142
+      }>	//  staking_contracts_dict msg_value sender_address new_staking_contracts_dict semi_annual_yield counter owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount deploy_list
       DROP
       s8 POP
-      s8 POP
-      s9 POP
-      s9 POP	//  semi_annual_yield royalty_params stored_seqno new_staking_contracts_dict public_key min_deposit_amount owner_address next_item_index content nft_item_code
+      s10 POP
+      s10 POP
+      s10 POP	//  royalty_params stored_seqno public_key new_staking_contracts_dict semi_annual_yield min_deposit_amount owner_address next_item_index content nft_item_code
       s3 s9 XCHG
       s8 s7 s6 XCHG3
-      s5 s4 s0 XCHG3
-      s1 s3 s0 XCHG3	//  owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
+      s3 s5 XCHG
+      s4 s3 s0 XCHG3	//  owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield new_staking_contracts_dict
       save_data INLINECALLDICT
-    }>	//  semi_annual_yield msg_value sender_address op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
+    }>	//  staking_contracts_dict msg_value sender_address op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount new_staking_contracts_dict
     DROP
     s11 POP
-    s11 POP	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
-    s8 PUSH	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno op
-    3 EQINT	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno _145
-    IFJMP:<{	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
+    s11 POP	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
+    s8 PUSH	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno op
+    3 EQINT	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno _145
+    IFJMP:<{	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
       s5 POP
-      s7 POP	//  semi_annual_yield public_key min_deposit_amount royalty_params staking_contracts_dict in_msg_body stored_seqno next_item_index content nft_item_code
-      s0 s4 XCHG	//  semi_annual_yield public_key min_deposit_amount royalty_params staking_contracts_dict nft_item_code stored_seqno next_item_index content in_msg_body
-      LDMSGADDR	//  semi_annual_yield public_key min_deposit_amount royalty_params staking_contracts_dict nft_item_code stored_seqno next_item_index content _211 _210
-      DROP	//  semi_annual_yield public_key min_deposit_amount royalty_params staking_contracts_dict nft_item_code stored_seqno next_item_index content new_owner
+      s7 POP	//  staking_contracts_dict public_key min_deposit_amount royalty_params semi_annual_yield in_msg_body stored_seqno next_item_index content nft_item_code
+      s0 s4 XCHG	//  staking_contracts_dict public_key min_deposit_amount royalty_params semi_annual_yield nft_item_code stored_seqno next_item_index content in_msg_body
+      LDMSGADDR	//  staking_contracts_dict public_key min_deposit_amount royalty_params semi_annual_yield nft_item_code stored_seqno next_item_index content _211 _210
+      DROP	//  staking_contracts_dict public_key min_deposit_amount royalty_params semi_annual_yield nft_item_code stored_seqno next_item_index content new_owner
       s8 s7 s9 XCHG3
       s4 s6 XCHG
-      5 ROLL	//  new_owner next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
+      s4 s5 XCHG
+      s3 s4 XCHG
+      s1 s3 s0 XCHG3	//  new_owner next_item_index content nft_item_code royalty_params stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
       save_data INLINECALLDICT
-    }>	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
+    }>	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index content nft_item_code royalty_params stored_seqno
     NIP
-    s2 POP	//  semi_annual_yield public_key min_deposit_amount op staking_contracts_dict in_msg_body owner_address next_item_index stored_seqno nft_item_code
-    s0 s6 XCHG	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict in_msg_body owner_address next_item_index stored_seqno op
-    4 EQINT	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict in_msg_body owner_address next_item_index stored_seqno _151
-    IFJMP:<{	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict in_msg_body owner_address next_item_index stored_seqno
-      s0 s3 XCHG	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict stored_seqno owner_address next_item_index in_msg_body
-      LDREF	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict stored_seqno owner_address next_item_index _152 in_msg_body
-      LDREF	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict stored_seqno owner_address next_item_index _152 _215 _214
-      DROP	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict stored_seqno owner_address next_item_index _152 _154
+    s2 POP	//  staking_contracts_dict public_key min_deposit_amount op semi_annual_yield in_msg_body owner_address next_item_index stored_seqno nft_item_code
+    s0 s6 XCHG	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield in_msg_body owner_address next_item_index stored_seqno op
+    4 EQINT	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield in_msg_body owner_address next_item_index stored_seqno _151
+    IFJMP:<{	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield in_msg_body owner_address next_item_index stored_seqno
+      s0 s3 XCHG	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield stored_seqno owner_address next_item_index in_msg_body
+      LDREF	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield stored_seqno owner_address next_item_index _152 in_msg_body
+      LDREF	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield stored_seqno owner_address next_item_index _152 _215 _214
+      DROP	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield stored_seqno owner_address next_item_index _152 _154
       s3 s9 XCHG
-      s8 s7 s5 XCHG3
-      s1 s3 s0 XCHG3	//  owner_address next_item_index _152 nft_item_code _154 stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
+      s8 s5 s5 XCHG3
+      s7 s1 s7 XCHG3
+      s0 s3 XCHG	//  owner_address next_item_index _152 nft_item_code _154 stored_seqno public_key min_deposit_amount semi_annual_yield staking_contracts_dict
       save_data INLINECALLDICT
-    }>	//  semi_annual_yield public_key min_deposit_amount nft_item_code staking_contracts_dict in_msg_body owner_address next_item_index stored_seqno
+    }>	//  staking_contracts_dict public_key min_deposit_amount nft_item_code semi_annual_yield in_msg_body owner_address next_item_index stored_seqno
     9 BLKDROP	// 
     16 PUSHPOW2DEC	//  _157=65535
     THROWANY
@@ -761,6 +766,37 @@ PROGRAM{
     DROP	// 
     16 PUSHPOW2DEC	//  _44=65535
     THROWANY
+  }>
+  get_deposit_data_by_nft_index PROC:<{
+    //  index
+    load_data INLINECALLDICT	//  index _31 _32 _33 _34 _35 _36 _37 _38 _39 _40
+    s7 POP
+    5 BLKDROP
+    2 2 BLKDROP2	//  index staking_contracts_dict nft_item_code
+    s1 s2 XCHG	//  staking_contracts_dict index nft_item_code
+    calculate_nft_item_state_init CALLDICT	//  staking_contracts_dict state_init
+    0 PUSHINT	//  staking_contracts_dict state_init _15=0
+    SWAP	//  staking_contracts_dict _15=0 state_init
+    calculate_nft_item_address CALLDICT	//  staking_contracts_dict nft_address
+    DUP	//  staking_contracts_dict nft_address nft_address
+    SBITS	//  staking_contracts_dict nft_address _21
+    s1 s2 XCHG	//  nft_address staking_contracts_dict _21
+    PFXDICTGETQ
+    NULLSWAPIFNOT2	//  _41 _42 _43 _44
+    s2 s3 XCHG
+    3 BLKDROP	//  value
+    32 LDU	//  reward_unix_time value
+    256 LDU	//  reward_unix_time _48 _47
+    DROP	//  reward_unix_time reward_amount
+  }>
+  get_staking_contracts_dict PROC:<{
+    // 
+    load_data INLINECALLDICT	//  _11 _12 _13 _14 _15 _16 _17 _18 _19 _20
+    9 1 BLKDROP2	//  staking_contracts_dict
+  }>
+  get_everything PROC:<{
+    // 
+    load_data INLINECALLDICT	//  _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
   }>
   get_collection_data PROC:<{
     // 
@@ -811,36 +847,5 @@ PROGRAM{
     STSLICER	//  individual_nft_content _25
     STREF	//  _26
     ENDC	//  _27
-  }>
-  get_deposit_data_by_nft_index PROC:<{
-    //  index
-    load_data INLINECALLDICT	//  index _31 _32 _33 _34 _35 _36 _37 _38 _39 _40
-    s7 POP
-    5 BLKDROP
-    2 2 BLKDROP2	//  index staking_contracts_dict nft_item_code
-    s1 s2 XCHG	//  staking_contracts_dict index nft_item_code
-    calculate_nft_item_state_init CALLDICT	//  staking_contracts_dict state_init
-    0 PUSHINT	//  staking_contracts_dict state_init _15=0
-    SWAP	//  staking_contracts_dict _15=0 state_init
-    calculate_nft_item_address CALLDICT	//  staking_contracts_dict nft_address
-    DUP	//  staking_contracts_dict nft_address nft_address
-    SBITS	//  staking_contracts_dict nft_address _21
-    s1 s2 XCHG	//  nft_address staking_contracts_dict _21
-    PFXDICTGETQ
-    NULLSWAPIFNOT2	//  _41 _42 _43 _44
-    s2 s3 XCHG
-    3 BLKDROP	//  value
-    32 LDU	//  reward_unix_time value
-    256 LDU	//  reward_unix_time _48 _47
-    DROP	//  reward_unix_time reward_amount
-  }>
-  get_staking_contracts_dict PROC:<{
-    // 
-    load_data INLINECALLDICT	//  _11 _12 _13 _14 _15 _16 _17 _18 _19 _20
-    9 1 BLKDROP2	//  staking_contracts_dict
-  }>
-  get_everything PROC:<{
-    // 
-    load_data INLINECALLDICT	//  _1 _2 _3 _4 _5 _6 _7 _8 _9 _10
   }>
 }END>c

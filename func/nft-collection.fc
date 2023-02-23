@@ -12,15 +12,16 @@
 ;; stored_seqno int32
 ;; public_key int256
 
-;; COLLECTION: kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT
-;; NFT: EQCGKv9J9C5vI2AyyZ9XpcSRHynWjUH-XOJNoNfJiMb5WULs
+;; COLLECTION: kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I
+;; NFT: EQA02e57_Z6sJhty5PQN4rUKpcnxTd7rTo7e2v0cPyfsm4sr
 ;; BUILD: toncli build
 ;; DEPLOY COLLECTION: toncli deploy nft_collection
-;; DEPOSIT: toncli send --amount 5 --net testnet --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/deposit.fif
-;; CLAIM_REWARD: toncli send --amount 0.02 --net testnet --address EQCGKv9J9C5vI2AyyZ9XpcSRHynWjUH-XOJNoNfJiMb5WULs --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/claim_reward.fif
-;; toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_deposit_data_by_nft_index 0
-;; toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_staking_contracts_dict
-;; toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_everything
+;; DEPOSIT: toncli send --amount 5 --net testnet --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/deposit.fif
+;; CLAIM_REWARD: toncli send --amount 0.02 --net testnet --address EQA02e57_Z6sJhty5PQN4rUKpcnxTd7rTo7e2v0cPyfsm4sr --body /home/some_wallet/dev/projects/nft_deposits_collection/fift/claim_reward.fif
+;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_deposit_data_by_nft_index 0
+;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_staking_contracts_dict
+;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_everything
+;; toncli get get_nft_data -a kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I --fift ./fift/parse-data-nft-collection.fif
 
 #pragma version >=0.4.0;
 #include "../lib/func/stdlib.fc";
@@ -217,9 +218,9 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
       int reward_unix_time = value~load_uint(32);
       int reward_amount = value~load_uint(256);
       
-      throw_unless(444, f);
-      throw_unless(555, reward_unix_time <= now());
-      throw_unless(666, reward_amount <= my_balance);
+      throw_unless(444, f); ;; if nft exists in dict
+      throw_unless(555, reward_unix_time <= now()); ;; if time to get reward came
+      throw_unless(666, reward_amount <= my_balance); ;; if no sufficient funds
 
       (cell new_staking_contracts_dict, int flag) = pfxdict_delete?(staking_contracts_dict, sender_address.slice_bits(), sender_address);
 
@@ -378,7 +379,7 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
 
 }
 
-;; Get methods
+;; Extension's get-methods
 
 (int, int) get_deposit_data_by_nft_index (int index) method_id {
 
@@ -407,6 +408,8 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
 (slice, int, cell, cell, cell, int, int, int, int, cell) get_everything () method_id {
   return load_data();
 }
+
+;; Standard get-methods
 
 (int, cell, slice) get_collection_data() method_id {
   var (owner_address, next_item_index, content, _, _, _, _, _, _, _) = load_data();

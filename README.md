@@ -45,11 +45,19 @@ To deploy run:`toncli deploy -n testnet nft_collection`.
 
 #### Deploy the deposit NFT
 
+Users can send a message with funds and 
+
+Message body
+
 `toncli send --amount 5 --net testnet --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/deposit.fif`
 
 #### Claim the reward
 
 `toncli send --amount 0.02 --net testnet --address EQCGKv9J9C5vI2AyyZ9XpcSRHynWjUH-XOJNoNfJiMb5WULs --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/claim_reward.fif`
+
+#### Claim reward partially
+
+Coming soon
 
 ### Collection owner methods
 
@@ -68,7 +76,7 @@ Every next item deployment you should make sure to change item index in the *fif
 
 #### Batch deploy of new nfts
 
-Description soon
+Coming soon
 
 #### Change collection's owner
 

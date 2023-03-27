@@ -45,13 +45,13 @@ To deploy run:`toncli deploy -n testnet nft_collection`.
 
 #### Deploy the deposit NFT
 
-Users can send a message with funds and 
-
-Message body
+Users can send a transaction with funds and get-back an NFT of deposit, that acts as a provement for the reward.
 
 `toncli send --amount 5 --net testnet --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/deposit.fif`
 
 #### Claim the reward
+
+User can send a message to his NFT for claiming reward. NFT will forward this message to the collection's contract. If message will pass all the verifications on the side of the collection's contract, the reward will be sent to the wallet, stipulated in the message.
 
 `toncli send --amount 0.02 --net testnet --address EQCGKv9J9C5vI2AyyZ9XpcSRHynWjUH-XOJNoNfJiMb5WULs --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/claim_reward.fif`
 
@@ -64,7 +64,6 @@ Coming soon
 #### Deploy a new NFT
 
 To deploy your own NFT item to the already deployed collection you will need:
-
 
 Configure *fift/deploy.fif* script with your own values:
 [Take a look](https://github.com/ton-blockchain/TIPs/issues/64)  
@@ -86,19 +85,29 @@ Description soon
 
 Description soon
 
-### Get-methods
+### Custom get-methods
 
 #### Get deposit data by the index of NFT
+
+You can pass the index of NFT to the get-method of collection's contract to get the reward unix-time of the deposit and the amount of the reward. This code is extendable and we can pass any additional information as a responce of this method.
 
 `toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_deposit_data_by_nft_index 0`
 
 #### Get the dictionary with deposit NFT data
 
+You can get full dictionary stored in collection's contract with data about all deposits.
+
 `toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_staking_contracts_dict`
 
 #### Get all smart-contract's data
 
+Running this method will return all the data, stored in the storage of the smart-contract: owner_address, next_item_index, content, nft_item_code, royalty_params, stored_seqno, public_key, min_deposit_amount, semi_annual_yield, staking_contracts_dict (dict with data about all deposits).
+
 `toncli get --address kQDZeh9RCQmYwe29oQMdbocjqtFtnvBPWKF_BMFRxaVjF-vT get_everything`
+
+### Custom get-methods
+
+Please note that as our contract comlies with the Standart of NFT, we implement all the standart methods. You can find their full description in [NFT Standard #62](https://github.com/ton-blockchain/TIPs/issues/62)
 
 #### Get collection data
 

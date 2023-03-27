@@ -76,8 +76,9 @@ dictnew staking_contracts_dict !
   <b
     0 32 u, // stored_seqno
     public_key B, // public_key
-    5000000000 64 u, // min_deposit_amount
+    100000000 64 u, // min_deposit_amount
     10 64 u, // semi_annual_yield
   b> ref, // extension
 
 b>
+

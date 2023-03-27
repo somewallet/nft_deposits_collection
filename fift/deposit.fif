@@ -1,16 +1,15 @@
 "TonUtil.fif" include
 
-50000000 =: storage_grams
-
 // "EQDlT07NpSh0uj-aSBkF2TRxOqR2nw0ErOQsA6TYakr1-FxP"
 "kQBRUHhkVHmIEC7HqmJvXDv7j9noMMLGlECI6AK2FH7MIb1F" constant nft_owner_address
 
 ."Deploying with nft owner address:" nft_owner_address type cr
 nft_owner_address $>smca 0= abort"Specify valid owner address"
 drop // Dropping address flags
+2constant owner_addr
 
 <b
-  -rot Addr, // nft owner address
+  owner_addr Addr, // nft owner address
   <b "0/0.json" $, b> ref, // nft content
 b> constant nft_payload
 

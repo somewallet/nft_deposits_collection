@@ -12,16 +12,16 @@
 ;; stored_seqno int32
 ;; public_key int256
 
-;; COLLECTION: kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I
-;; NFT: EQA02e57_Z6sJhty5PQN4rUKpcnxTd7rTo7e2v0cPyfsm4sr
+;; COLLECTION: kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP
+;; NFT: EQCDV0mZwQ4Esacx942JGepcAC-tZgIbddOU9UltRQZ4oTtJ
 ;; BUILD: toncli build
 ;; DEPLOY COLLECTION: toncli deploy nft_collection
-;; DEPOSIT: toncli send --amount 5 --net testnet --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I --body /home/some_wallet/dev/projects/nft_stakable_collection/fift/deposit.fif
-;; CLAIM_REWARD: toncli send --amount 0.02 --net testnet --address EQA02e57_Z6sJhty5PQN4rUKpcnxTd7rTo7e2v0cPyfsm4sr --body /home/some_wallet/dev/projects/nft_deposits_collection/fift/claim_reward.fif
-;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_deposit_data_by_nft_index 0
-;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_staking_contracts_dict
-;; toncli get --address kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I get_everything
-;; toncli get get_nft_data -a kQBQ63lCkXmxDYzBTxNuo51bMjCA-V2bD43FXt5TGm9pzW_I --fift ./fift/parse-data-nft-collection.fif
+;; DEPOSIT: toncli send --amount 5 --net testnet --address kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP --body /home/some_wallet/dev/projects/nft_deposits_collection/fift/deposit.fif
+;; CLAIM_REWARD: toncli send --amount 0.02 --net testnet --address EQCDV0mZwQ4Esacx942JGepcAC-tZgIbddOU9UltRQZ4oTtJ --body /home/some_wallet/dev/projects/nft_deposits_collection/fift/claim_reward.fif
+;; toncli get --address kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP get_deposit_data_by_nft_index 0
+;; toncli get --address kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP get_staking_contracts_dict
+;; toncli get --address kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP get_everything
+;; toncli get get_nft_data -a kQC95iC-KWrgdSlGfxkQMfBAGItpGZvLeMHuoCIU0Nn95JdP --fift ./fift/parse-data-nft-collection.fif
 
 #pragma version >=0.4.0;
 #include "../lib/func/stdlib.fc";
@@ -279,6 +279,7 @@ cell deploy_nft_item(int item_index, cell nft_item_code, int amount, cell nft_co
       }
       return ();
     }
+
     if (op == 2) { ;; batch deploy of new nfts
       int counter = 0;
       cell deploy_list = in_msg_body~load_ref();
